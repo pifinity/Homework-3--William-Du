@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+class square {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new FileReader("square.in"));
+        PrintWriter out = new PrintWriter("square.out");
+
+        StringTokenizer st = new StringTokenizer(bf.readLine());
+        int x1 = Integer.parseInt(st.nextToken());
+        int y1 = Integer.parseInt(st.nextToken());
+        int x2 = Integer.parseInt(st.nextToken());
+        int y2 = Integer.parseInt(st.nextToken());
+
+        st = new StringTokenizer(bf.readLine());
+        int x3 = Integer.parseInt(st.nextToken());
+        int y3 = Integer.parseInt(st.nextToken());
+        int x4 = Integer.parseInt(st.nextToken());
+        int y4 = Integer.parseInt(st.nextToken());
+
+        int left = Math.min(x1, x3);
+        int bottom = Math.min(y1, y3);
+        int right = Math.max(x2, x4);
+        int top = Math.max(y2, y4);
+
+        out.println((int) Math.pow(Math.max((right-left), (top-bottom)), 2));
+        out.close();
+    }
+}
