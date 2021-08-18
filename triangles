@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+
+class triangles {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new FileReader("triangles.in"));
+        PrintWriter out = new PrintWriter("triangles.out");
+
+        int N = Integer.parseInt(bf.readLine());
+
+        int[][] posts = new int[N][2];
+
+        for (int i =0 ; i<N; i++){
+            StringTokenizer st = new StringTokenizer(bf.readLine());
+
+            posts[i][0] = Integer.parseInt(st.nextToken());
+            posts[i][1] = Integer.parseInt(st.nextToken());
+
+        }
+
+        int solution = 0;
+
+        for (int i = 0 ; i<N; i++){
+            for (int ii = i+1; ii<N; ii++){
+                for (int iii=ii+1; iii<N; iii++){
+
+                    int base  = 0;
+                    int height = 0;
+
+                    if (posts[i][0]==posts[ii][0]) height = Math.abs(posts[i][1]-posts[ii][1]);
+
+                    if (posts[i][0]==posts[iii][0]) height = Math.abs(posts[i][1]-posts[iii][1]);
+
+                    if (posts[ii][0]==posts[iii][0]) height = Math.abs(posts[ii][1]-posts[iii][1]);
+
+                    if (posts[i][1]==posts[ii][1]) base = Math.abs(posts[i][0]-posts[ii][0]);
+
+                    if (posts[i][1]==posts[iii][1]) base = Math.abs(posts[i][0]-posts[iii][0]);
+
+                    if (posts[ii][1]==posts[iii][1]) base = Math.abs(posts[iii][0]-posts[ii][0]);
+
+
+                    solution = Math.max(solution, base*height);
+
+                }
+            }
+        }
+
+        out.println(solution);
+        out.close();
+    }
+}
